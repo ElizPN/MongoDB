@@ -10,13 +10,16 @@ let mongoClient = new mongodb.MongoClient("mongodb://localhost:27017", {
 const db = mongoClient.db("initial-data");
 
 async function doStuff() {
-  //   const result = await db.collection("prods").countDocuments();
-  //   console.log(result);
-
-  let coll = db.collection("users");
-
-  let res = await coll.find().toArray();
-  console.log(res);
+try {
+    let coll = db.collection("users");
+    let res = await coll.find().toArray();
+    console.log(res);
+    
+} catch (error) {
+    console.error(error);
+    
+}
+  
 }
 doStuff();
 
