@@ -9,11 +9,29 @@ let mongoClient = new mongodb.MongoClient("mongodb://localhost:27017", {
 
 const db = mongoClient.db("initial-data");
 
+let prods = [
+  {
+    name: "prod1",
+    cost: 1000,
+    rest: 100,
+  },
+  {
+    name: "prod2",
+    cost: 2000,
+    rest: 200,
+  },
+  {
+    name: "prod3",
+    cost: 3000,
+    rest: 300,
+  },
+];
+let prod = { name: "test", cost: 300, rest: 30 };
+
 async function doStuff() {
-  let prod = { name: "test", cost: 300, rest: 30 };
   try {
     let coll = db.collection("prods");
-    await coll.insertOne(prod);
+    await coll.insertMany(prods);
     let newData = await coll.find().toArray();
     console.log(newData);
   } catch (error) {
@@ -28,6 +46,7 @@ doStuff();
 // coll.find().project({name: 1}) - accept object wich properies are fields, and values are 0 or 1.
 // 1 - field will be included in the selection,  0 - not.
 // coll.distinct() - get unique values.  coll.distinct("cost") - get array of all prices
+//coll.insertOne() - add one document
 
 // connection to mongo
 
