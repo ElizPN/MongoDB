@@ -33,7 +33,8 @@ async function doStuff() {
     let coll = db.collection("prods");
     await coll.insertMany(prods);
     await coll.deleteMany({ cost: 500 });
-    let res = await coll.find().toArray();
+    let res = await coll.updateMany({}, { $set: { cost: 1000 } });
+    await coll.findOneAndUpdate({}, { $set: { touch: true } });
     console.log(res);
   } catch (error) {
     console.error(error);
@@ -51,6 +52,8 @@ doStuff();
 // .insertMany()
 // .deleteOne
 // .deleteMany
+//.findOneAndDelete() - delete and return it
+//.drop() - delete whole collection from db
 
 // connection to mongo
 
