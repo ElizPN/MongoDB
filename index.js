@@ -10,7 +10,7 @@ let mongoClient = new mongodb.MongoClient("mongodb://localhost:27017", {
 const db = mongoClient.db("initial-data");
 
 async function doStuff() {
-  let proj = { name: 1, cost: 1 };
+  let proj = { _id: 0 };
   try {
     let coll = db.collection("prods");
     let res = await coll.find().project(proj).toArray();
