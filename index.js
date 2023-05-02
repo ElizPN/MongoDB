@@ -10,9 +10,10 @@ let mongoClient = new mongodb.MongoClient("mongodb://localhost:27017", {
 const db = mongoClient.db("initial-data");
 
 async function doStuff() {
+  let proj = { name: 1, cost: 1 };
   try {
-    let coll = db.collection("users");
-    let res = await coll.count({ age: 26 });
+    let coll = db.collection("prods");
+    let res = await coll.find().project(proj).toArray();
     console.log(res);
   } catch (error) {
     console.error(error);
@@ -22,6 +23,7 @@ doStuff();
 
 // coll.find.  - find all({filter1: value, filter2: value}) documents with responsive filters
 // coll.findOne - find just one document
+// coll.count
 
 // connection to mongo
 
