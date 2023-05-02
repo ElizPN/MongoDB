@@ -9,27 +9,19 @@ let mongoClient = new mongodb.MongoClient("mongodb://localhost:27017", {
 
 const db = mongoClient.db("initial-data");
 
-async function getOneDocument() {
+async function doStuff() {
   try {
-    let coll = db.collection("prods");
-    let res = await coll.findOne({ cost: 300, rest: 30 });
+    let coll = db.collection("users");
+    let res = await coll.count({ age: 26 });
     console.log(res);
   } catch (error) {
     console.error(error);
   }
 }
-getOneDocument();
+doStuff();
 
-// async function doStuff() {
-//   try {
-//     let coll = db.collection("prods");
-//     let res = await coll.find({ cost: 100, rest: 10 }).toArray();
-//     console.log(res);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-// doStuff();
+// coll.find.  - find all({filter1: value, filter2: value}) documents with responsive filters
+// coll.findOne - find just one document
 
 // connection to mongo
 
