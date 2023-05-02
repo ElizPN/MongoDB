@@ -10,11 +10,12 @@ let mongoClient = new mongodb.MongoClient("mongodb://localhost:27017", {
 const db = mongoClient.db("initial-data");
 
 async function doStuff() {
-  let proj = { _id: 0 };
+  let prod = { name: "test", cost: 300, rest: 30 };
   try {
     let coll = db.collection("prods");
-    let res = await coll.distinct("cost")
-    console.log(res);
+    await coll.insertOne(prod);
+    let newData = await coll.find().toArray();
+    console.log(newData);
   } catch (error) {
     console.error(error);
   }
