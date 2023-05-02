@@ -32,8 +32,9 @@ async function doStuff() {
   try {
     let coll = db.collection("prods");
     await coll.insertMany(prods);
-    let newData = await coll.find().toArray();
-    console.log(newData);
+    await coll.deleteMany({ cost: 500 });
+    let res = await coll.find().toArray();
+    console.log(res);
   } catch (error) {
     console.error(error);
   }
@@ -47,6 +48,9 @@ doStuff();
 // 1 - field will be included in the selection,  0 - not.
 // coll.distinct() - get unique values.  coll.distinct("cost") - get array of all prices
 //coll.insertOne() - add one document
+// .insertMany()
+// .deleteOne
+// .deleteMany
 
 // connection to mongo
 
