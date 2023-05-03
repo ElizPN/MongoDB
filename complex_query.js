@@ -12,9 +12,10 @@ async function getData() {
     let coll = db.collection("prods");
     let condLess = { cost: { $lt: 500 } };
     let condMore = { cost: { $gt: 500 } };
-    let equal = { cost: { $eq : 300} };
+    let equal = { cost: { $eq: 300 } };
+    let notEqual = { cost: { $ne: 300 } };
 
-    let res = await coll.find(equal).toArray();
+    let res = await coll.find(notEqual).toArray();
     console.log("result", res);
   } catch (error) {
     console.error(error);
@@ -30,3 +31,4 @@ getData();
 // $lte - less or equal the passed value
 // $gte - more or equal the passed value
 // $eq  - equal the passed value
+// $ne - not equal the passed value
