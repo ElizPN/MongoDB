@@ -16,11 +16,20 @@ async function getData() {
     let notEqual = { cost: { $ne: 300 } };
     let someValues = { cost: { $in: [1000, 300] } };
     let notEqualAll = { cost: { $nin: [1000, 300] } };
-
     let shouldRemove = { cost: { $eq: 1000 } };
+    // Choose all documents that have cost more then 200 AND have rest equal 10
+    let combineCount = {
+      $and: [{ cost: { $gt: 200 } }, { rest: { $eq: 10 } }],
+    };
+    // Choose documents that have cost more then 200 OR have rest equal 10
+    let firstValueFromArr = {
+      $or: [{ cost: { $gt: 200 } }, { rest: { $eq: 10 } }],
+    };
+    let sellProd = {cost: {$not: {$eq: 300}}}
+
     await coll.deleteMany(shouldRemove);
 
-    let res = await coll.find(notEqualAll).toArray();
+    let res = await coll.find(sellProd).toArray();
     console.log("result", res);
   } catch (error) {
     console.error(error);
