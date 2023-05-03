@@ -10,8 +10,10 @@ const db = mongoClient.db("initial-data");
 async function getData() {
   try {
     let coll = db.collection("prods");
-    let cond = { cost: { $lt: 500 } };
-    let res = await coll.find(cond).toArray();
+    let condLess = { cost: { $lt: 500 } };
+    let condMore = { cost: { $gt: 500 } };
+
+    let res = await coll.find(condMore).toArray();
     console.log("result", res);
   } catch (error) {
     console.error(error);
