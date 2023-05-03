@@ -26,7 +26,7 @@ let prods = [
     rest: 300,
   },
 ];
-let prod = { name: "test", cost: 300, rest: 30 };
+
 
 async function doStuff() {
   try {
@@ -53,7 +53,9 @@ doStuff();
 // .deleteOne
 // .deleteMany
 //.findOneAndDelete() - delete and return it
-//.drop() - delete whole collection from db
+// .drop() - delete whole collection from db
+// .updateMany - update many documents
+// .updateOne - update one documents
 
 // connection to mongo
 
