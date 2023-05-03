@@ -42,20 +42,20 @@ async function doStuff() {
 }
 doStuff();
 
-// coll.find.  - find all({filter1: value, filter2: value}) documents with responsive filters
-// coll.findOne - find just one document
-// coll.count - counted number of documents
-// coll.find().project({name: 1}) - accept object wich properies are fields, and values are 0 or 1.
+// .find() - find all({filter1: value, filter2: value}) documents with responsive filters
+// .findOne() - find just one document
+// .count() - counted number of documents
+// .find().project({name: 1}) - accept object wich properies are fields, and values are 0 or 1.
 // 1 - field will be included in the selection,  0 - not.
-// coll.distinct() - get unique values.  coll.distinct("cost") - get array of all prices
-//coll.insertOne() - add one document
+// .distinct() - get unique values.  coll.distinct("cost") - get array of all prices
+// .insertOne() - add one document
 // .insertMany()
-// .deleteOne
-// .deleteMany
-//.findOneAndDelete() - delete and return it
+// .deleteOne()
+// .deleteMany()
+// .findOneAndDelete() - delete and return it
 // .drop() - delete whole collection from db
-// .updateMany - update many documents
-// .updateOne - update one documents
+// .updateMany() - update many documents
+// .updateOne() - update one documents
 
 // connection to mongo
 
