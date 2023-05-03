@@ -14,8 +14,13 @@ async function getData() {
     let condMore = { cost: { $gt: 500 } };
     let equal = { cost: { $eq: 300 } };
     let notEqual = { cost: { $ne: 300 } };
+    let someValues = { cost: { $in: [1000, 300] } };
+    let notEqualAll = { cost: { $nin: [1000, 300] } };
 
-    let res = await coll.find(notEqual).toArray();
+    let shouldRemove = { cost: { $eq: 1000 } };
+    await coll.deleteMany(shouldRemove);
+
+    let res = await coll.find(notEqualAll).toArray();
     console.log("result", res);
   } catch (error) {
     console.error(error);
@@ -32,3 +37,5 @@ getData();
 // $gte - more or equal the passed value
 // $eq  - equal the passed value
 // $ne - not equal the passed value
+// $in - shoose one of values provided in array
+// $nin - not Equal All values provided in array
