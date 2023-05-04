@@ -8,10 +8,10 @@ const db = mongoClient.db("initial-data");
 
 async function getData() {
   try {
-    const coll = db.collection("users_addresses");
-    const londonUsers = { "addr.city": "London" };
+    const coll = db.collection("employees");
+    const highSalary = {  "employee.position.salary": {$lt: 2000} };
 
-    let res = await coll.find(londonUsers).toArray();
+    let res = await coll.find(highSalary).toArray();
     console.log(res);
   } catch (error) {
     console.error(error);
