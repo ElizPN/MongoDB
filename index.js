@@ -27,7 +27,6 @@ let prods = [
   },
 ];
 
-
 async function doStuff() {
   try {
     let coll = db.collection("prods");
@@ -59,4 +58,4 @@ doStuff();
 
 // connection to mongo
 
-mongoClient.connect(async function (error, mongo) {});
+// mongoClient.connect(async function (error, mongo) {});
