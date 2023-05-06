@@ -9,22 +9,13 @@ let mongoClient = new mongodb.MongoClient("mongodb://localhost:27017", {
 
 const db = mongoClient.db("initial-data");
 
-async function response() {
-  try {
-    const coll = db.collection("clothes");
-    app.get("/clothes", async (req, res) => {
-      let clothes = await coll.find().toArray();
-      console.log(clothes);
-      res.send(clothes);
-    });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-response();
+app.get("/clothes", async (req, res) => {
+  const coll = db.collection("clothes");
+  const result = await coll.find().toArray();
+  console.log(result);
+  res.send(result);
+});
 
 app.listen(3000, () => {
   console.log("running clothes");
 });
-
