@@ -9,11 +9,13 @@ let mongoClient = new mongodb.MongoClient("mongodb://localhost:27017", {
 
 const db = mongoClient.db("initial-data");
 
-app.get("/clothes", async (req, res) => {
+app.get("/clothes/:name", async (req, res) => {
   const coll = db.collection("clothes");
-  const result = await coll.find().toArray();
-  console.log(result);
-  res.send(result);
+  let name = req.params.name;
+  console.log(name);
+  let user = await coll.findOne({ name: name });
+
+  res.send(user);
 });
 
 app.listen(3000, () => {
