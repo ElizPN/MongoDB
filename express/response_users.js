@@ -23,12 +23,13 @@ app.set("views", __dirname + "/views");
 app.get("/user/show/:name", async (req, res) => {
   const coll = db.collection("users");
   const name = req.params.name;
-
   const user = await coll.findOne({ name: name });
-  console.log(user);
 
   res.render("user", { user: user });
-  // res.send(user);
+});
+
+app.use((req, res) => {
+  res.status(404).render("error");
 });
 
 app.listen(3000, () => {
