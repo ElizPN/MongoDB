@@ -24,7 +24,6 @@ app.get("/users/", async (req, res) => {
   const coll = db.collection("users");
   const users = await coll.find().toArray();
   res.render("all_users", { users: users });
-  console.log("render all users");
 });
 
 app.use((req, res) => {
