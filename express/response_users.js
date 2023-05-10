@@ -24,8 +24,11 @@ app.get("/user/show/:name", async (req, res) => {
   const coll = db.collection("users");
   const name = req.params.name;
   const user = await coll.findOne({ name: name });
-
-  res.render("user", { user: user });
+  if (user) {
+    res.render("user", { user: user });
+  } else {
+    res.status(404).send("user not found");
+  }
 });
 
 app.use((req, res) => {
