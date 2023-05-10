@@ -20,15 +20,11 @@ app.engine("hbs", handlebars.engine);
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
-app.get("/user/show/:name", async (req, res) => {
+app.get("/users/", async (req, res) => {
   const coll = db.collection("users");
-  const name = req.params.name;
-  const user = await coll.findOne({ name: name });
-  if (user) {
-    res.render("user", { user: user });
-  } else {
-    res.status(404).send("user not found");
-  }
+  const users = await coll.find().toArray();
+  res.render("all_users", { users: users });
+  console.log("render all users");
 });
 
 app.use((req, res) => {
@@ -38,5 +34,3 @@ app.use((req, res) => {
 app.listen(3000, () => {
   console.log("running users");
 });
-
-// this code should be aware of enviroment , so we use __dirname
