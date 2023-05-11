@@ -26,6 +26,17 @@ app.get("/users/", async (req, res) => {
   res.render("all_users", { users: users });
 });
 
+app.get("/user/show/:name", async (req, res) => {
+  const coll = db.collection("users");
+  const name = req.params.name;
+  const user = await coll.findOne({ name: name });
+  if (user) {
+    res.render("user", { user: user });
+  } else {
+    res.status(404).send("user not found");
+  }
+});
+
 app.use((req, res) => {
   res.status(404).render("error");
 });
